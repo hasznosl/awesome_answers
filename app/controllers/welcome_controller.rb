@@ -1,9 +1,14 @@
 class WelcomeController < ApplicationController
 
   def index
-    
+
   end
 
+
+  def greeting
+    #this will capture the variable in the dynamic url
+    @name = params[:name]
+  end
 
   def hello
     # this line is implied by convention

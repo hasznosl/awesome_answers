@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   get "/index" => "welcome#index"
   get "/hello" => "welcome#hello"
+  # when using a symbol like string within a url, it means it is a variable
+  # part of the url, this is what's called a dynamic url
+  get "/greeting/:name" => "welcome#greeting"
+  get "/home" => "welcome#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
