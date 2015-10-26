@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  # the routes file is basically a set of routes
+  # it is not aware of controllers' existence
+
+  root "welcome#index"
+
+  get "/index" => "welcome#index"
+  get "/hello" => "welcome#hello"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

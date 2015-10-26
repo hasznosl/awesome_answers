@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<a href="<%= root_path%>">Home</a>
+<hr>
+<a href="<%= hello_path%>">Hello with html</a>
+<hr>
+
+<!-- but it"s better to use a view helper -->
+<%= link_to "Hello with url helper", hello_path%>
+<hr>
+
+<%= index_path %>
+<hr>
+<%= index_url %>
+
 <%= yield %>
 
 </body>
