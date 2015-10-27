@@ -16,6 +16,17 @@ class Question < ActiveRecord::Base
   after_initialize :set_default_values
   before_validation :capitalize_title
 
+  # the scope does the same as the below commented out
+  # scope takes in two arguments -> method name, and lambda
+  # scope is rails
+  scope :recent_ten, lambda { order("created_at DESC").limit(10) }
+  # def self.recent_ten
+  #   order("created_at DESC").limit(10)
+  # end
+
+  def self.recent(num)
+    order("created_at DESC").limit(num)
+  end
 
   private
     # this is a custom validation method
