@@ -14,17 +14,24 @@ class Question < ActiveRecord::Base
 
   # we can have any combination of [before || after]_[initialize || validation || save || commit]
   after_initialize :set_default_values
+  before_validation :capitalize_title
+
 
   private
-  # this is a custom validation method
-  def no_monkey
-    if title.present? && title.downcase.include?("monkey")
-      errors.add(:title, "No monkeys please!")
+    # this is a custom validation method
+    def no_monkey
+      if title.present? && title.downcase.include?("monkey")
+        errors.add(:title, "No monkeys please!")
+      end
     end
-  end
 
-  def set_default_values
-    self.view_count ||= 7
-  end
+    def set_default_values
+      self.view_count ||= 7
+    end
+
+
+    def capitalize_title
+      self.title.capitalize!
+    end
 
 end
