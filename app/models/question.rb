@@ -28,6 +28,10 @@ class Question < ActiveRecord::Base
     order("created_at DESC").limit(num)
   end
 
+  def self.search(string)
+    where("title ILIKE ? OR body ILIKE ?", "%#{string}%", "%#{string}%")
+  end
+
   private
     # this is a custom validation method
     def no_monkey
