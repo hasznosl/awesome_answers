@@ -9,6 +9,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    # create will save to the database
+    Question.create title: params[:question][:title],
+                    body: params[:question][:body]})
     render text: "Inside Questions Create: #{params[:question]}"
   end
 
