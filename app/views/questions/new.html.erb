@@ -17,11 +17,15 @@
 <%= submit_tag "Create Question" %>
 <% end %> -->
 
+
+<%= @q.errors.full_messages.join(", ") %>
+
 <!-- But the BEST -->
-<%= form_for Question.new do |f| %>
+<%= form_for @q do |f| %>
   <div class="">
     <%= f.label :title %>
     <% #this generates an input that is question[:title] = "whatever input" %>
+    <%#= f.text_field :title, value: params[:question][:title] %>
     <%= f.text_field :title %>
   </div>
   <div class="">

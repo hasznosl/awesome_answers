@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   delete "/questions/:id" => "questions#destroy"
   get "/questions/:id/edit" => "questions#edit"
-  get "/questions/:id" => "questions#show"
+  get "/questions/:id" => "questions#show", as: :question
   post "/questions/:id/comments" => "comments#create"
   get "/faq" => "home#faq"
 
