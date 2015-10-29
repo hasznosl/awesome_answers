@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get "/greeting/:name" => "welcome#greeting", as: :greeting
   get "/home" => "welcome#index"
   #
+
+  get "/questions/new" => "questions#new", as: :new_question
+  post "/questions" => "questions#create", as: :questions
+
   delete "/questions/:id" => "questions#destroy"
   get "/questions/:id/edit" => "questions#edit"
   get "/questions/:id" => "questions#show"
