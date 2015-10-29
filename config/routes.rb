@@ -13,14 +13,18 @@ Rails.application.routes.draw do
   get "/home" => "welcome#index"
   #
 
-  get "/questions/new" => "questions#new", as: :new_question
-  post "/questions" => "questions#create", as: :questions
+  resources :questions
 
-  delete "/questions/:id" => "questions#destroy"
-  get "/questions/:id/edit" => "questions#edit"
-  get "/questions/:id" => "questions#show", as: :question
-  post "/questions/:id/comments" => "comments#create"
-  get "/faq" => "home#faq"
+  # get "/questions/new" => "questions#new", as: :new_question
+  # get "/questions/:id" => "questions#show", as: :question
+  # get "/questions/:id/edit" => "questions#edit", as: :edit_question
+  # patch "/question/:id" => "questions#update"
+  # post "/questions" => "questions#create", as: :questions
+  #
+  # delete "/questions/:id" => "questions#destroy"
+  # post "/questions/:id/comments" => "comments#create"
+  # get "/faq" => "home#faq"
+  # get "/questions" => "questions#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
