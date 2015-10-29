@@ -46,7 +46,7 @@ class Question < ActiveRecord::Base
 
 
     def capitalize_title
-      self.title.capitalize!
+      self.title.capitalize! if title
     end
 
 end

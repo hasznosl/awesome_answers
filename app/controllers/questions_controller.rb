@@ -17,8 +17,12 @@ class QuestionsController < ApplicationController
     # without the whitelist, hackers could chaneg other other attributes of the model
     # happened to github, people hacked others ssh keys
     question_params = params.require(:question).permit([:title, :body])
-    Question.create(question_params)
-    render text: "Inside Questions Create: #{params[:question]}"
+    q = Question.new(question_params)
+    if q.save
+      render text: "Saved Correctly."
+    else
+      render text: "Didn't save correctly. #{q.errors.full_messages.join(", ")}"
+    end
   end
 
   def destroy
