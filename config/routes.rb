@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   # part of the url, this is what's called a dynamic url
   get "/greeting/:name" => "welcome#greeting", as: :greeting
   get "/home" => "welcome#index"
+  #
+  delete "/questions/:id" => "questions#destroy"
+  get "/questions/:id/edit" => "questions#edit"
+  get "/questions/:id" => "questions#show"
+  post "/questions/:id/comments" => "comments#create"
+  get "/faq" => "home#faq"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
