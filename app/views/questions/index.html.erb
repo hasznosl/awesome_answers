@@ -2,6 +2,8 @@
 
 
 <% @questions.each do |question| %>
-  <%= link_to question.title, question_path(question) %>
-  <hr>
+  <div class="well">
+    <%= link_to question.title, question_path(question) %>
+  </div>
+
 <% end %>

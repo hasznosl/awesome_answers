@@ -1,36 +1,4 @@
 <h1>Create New Question</h1>
 
-<!--  The form below won't work, because no Authenticity token is generated-->
-<!-- <form class="" action="<%=questions_path%>" method="post">
-  <input type="submit" value="Create Questions">
-</form> -->
-
-<!-- Better, but the best is the form tag -->
-<!-- <form class="" action="<%=questions_path%>" method="post">
-  <input type="hidden" name="authenticity_token "value="<%= form_authenticity_token%>">
-  <input type="submit" value="Create Questions">
-</form> -->
-
-
-<!--  This will generate the above -->
-<!-- <%= form_tag questions_path  do %>
-<%= submit_tag "Create Question" %>
-<% end %> -->
-
-
-<%= @q.errors.full_messages.join(", ") %>
-
-<!-- But the BEST -->
-<%= form_for @q do |f| %>
-  <div class="">
-    <%= f.label :title %>
-    <% #this generates an input that is question[:title] = "whatever input" %>
-    <%#= f.text_field :title, value: params[:question][:title] %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="">
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit %>
-<% end %>
+<% #this will look a partial, partials can share instance variables, but not local variables %>
+<%= render "form"%>
