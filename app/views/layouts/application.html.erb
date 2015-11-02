@@ -10,17 +10,7 @@
 <div class="container">
 
   <%= render "/layouts/nav" %>
-  <% if (flash[:notice])  %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= flash[:notice] %>
-    </div>
-  <% elsif(flash[:alert]) %>
-    <div class="warning warning-success">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
+  <%= render "/layouts/flash_messages" %>
   <%= yield %>
 </div>
 
