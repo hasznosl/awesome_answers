@@ -1,5 +1,9 @@
 class Question < ActiveRecord::Base
 
+  # dependent: :destroy will destroy all answers referenceing a question just before deleting the question
+  # dependent: :nullify - obvious
+  has_many :answers, dependent: :destroy
+
   validates(:title, {presence: true,
                       uniqueness: {message: "Was already used"},
                       length: {minimum: 3}})

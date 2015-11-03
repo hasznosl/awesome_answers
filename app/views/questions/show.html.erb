@@ -6,3 +6,16 @@
 <%= link_to "Delete", question_path(@q), method: :delete,
                                         class: "btn btn-danger btn-sm",
                                         data: {confirm: "Are you sure?"}%>
+
+
+<h2>Create an Answer</h2>
+
+<%= @answer.errors.full_messages.join(", ") %>
+
+<%= form_for [@q, @answer] do |f| %>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
