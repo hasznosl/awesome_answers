@@ -19,3 +19,13 @@
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<h2>Answers</h2>
+<% @q.answers.each do |answer| %>
+  <div class="">
+    <%= answer.body %>
+    <%= link_to "Delete", question_answer_path(@q, answer), method: :delete,
+                                                            class: "btn btn-danger",
+                                                            data: {confirm: "Are you sure?"}%>
+  </div>
+<% end %>
