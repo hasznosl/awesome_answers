@@ -1,10 +1,13 @@
 class AnswersController < ApplicationController
 
+  before_action :authenticate_user
+  before_action :authorize, only: [:edit, :update, :destroy]
+
   def create
     answer_params = params.require(:answer).permit(:body)
     # params[:question_id] is coming from the url
     @q = Question.find(params[:question_id])
-    @answer = Answer.new(answer_params)
+    @answer = current_user.answers.new(answer_params)
     # this associates the answer with question @q
     @answer.question = @q
     if @answer.save
@@ -18,8 +21,13 @@ class AnswersController < ApplicationController
 
   def destroy
     answer = Answer.find params[:id]
+    redirect_to root_path, alert: "Access Denied!" unless can? :delete, @q
     answer.destroy
     redirect_to question_path(answer.question), notice: "Answer deleted"
+  end
+
+  def authorize
+    redirect_to root_path, alert: "Access Denied!" unless can? :manage, @q
   end
 
 end

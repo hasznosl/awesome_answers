@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   # this wont delete the dependent data from the database, only make the reference null
   has_many :questions, dependent: :nullify
+  has_many :answers, dependent: :nullify
 
   validates :email, presence: true, uniqueness: true
 
