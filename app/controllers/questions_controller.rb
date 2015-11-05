@@ -9,7 +9,9 @@ class QuestionsController < ApplicationController
   # before all actions unless you specify options such as
   # except or only
   before_action :authenticate_user, except: [:index, :show]
+  before_action :authorize, only: [:edit, :update, :destroy]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
+
 
   def new
     authenticate_user
@@ -39,6 +41,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, alert: "Access Denied." unless can? :edit, @q
   end
 
   def update
@@ -70,6 +73,10 @@ class QuestionsController < ApplicationController
       # without the whitelist, hackers could chaneg other other attributes of the model
       # happened to github, people hacked others ssh keys
       question_params = params.require(:question).permit([:title, :body])
+    end
+
+    def authorize
+      redirect_to root_path, alert: "Access Denied!" unless can? :manage, @q
     end
 
 end
