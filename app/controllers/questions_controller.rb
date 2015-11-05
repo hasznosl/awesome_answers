@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   # before action will register a method that will be executed
   # before all actions unless you specify options such as
   # except or only
+  before_action :authenticate_user, except: [:index, :show]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -21,6 +22,7 @@ class QuestionsController < ApplicationController
     #                 body: params[:question][:body]})
 
     @q = Question.new(question_params)
+    @q.user = current_user
     if @q.save
       # redirect_to question_path( id: @q.id)
       redirect_to question_path(@q), notice: "Question created successfully."
