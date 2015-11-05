@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # root "welcome#index"
   root "questions#index"
 
+  resources :users, only: [:new, :create]
+
   get "/index" => "welcome#index"
   get "/hello" => "welcome#hello"
   # when using a symbol like string within a url, it means it is a variable
@@ -13,6 +15,12 @@ Rails.application.routes.draw do
   get "/greeting/:name" => "welcome#greeting", as: :greeting
   get "/home" => "welcome#index"
   #
+
+  resources :sessions, only: [:new, :create] do
+    # in this case we dont need an id
+    delete :destroy, on: :collection
+
+  end
 
   resources :questions do
     # # questions/search
