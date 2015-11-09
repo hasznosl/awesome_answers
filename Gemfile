@@ -34,6 +34,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# this will stop the assets pipeline from thrashing command line
+gem 'quiet_assets'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -48,6 +51,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'rails-erd'
 
   gem "interactive_editor"
   gem "awesome_print"
