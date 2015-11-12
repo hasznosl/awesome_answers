@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   # dependent: :destroy will destroy all answers referenceing a question just before deleting the question
   # dependent: :nullify - obvious
   has_many :answers, dependent: :destroy
+  has_many :favourites, dependent: :destroy
+  has_many :favouriting_users, through: :favourites, source: :user
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
   belongs_to :user
@@ -46,6 +48,16 @@ class Question < ActiveRecord::Base
   def like_for(user)
     likes.find_by_user_id(user.id)
   end
+
+
+  def favourited_by? user
+    favourite_for(user).present? if user
+  end
+
+  def favourite_for(user)
+    favourites.find_by_user_id(user.id)
+  end
+
 
   private
     # this is a custom validation method

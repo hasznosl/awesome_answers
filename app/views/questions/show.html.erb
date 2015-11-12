@@ -30,6 +30,15 @@
 <% end %>
 Liked: <%= pluralize(@q.likes.size, "time") %>
 
+<% if user_signed_in? && @q.favourited_by?(current_user) %>
+  <%= link_to fa_icon("star"), question_favourite_path(@q, @q.favourite_for(current_user)),
+                      method: :delete,
+                      class: "icon-big"
+                      %>
+<% else %>
+  <%= link_to fa_icon("star-o"), question_favourites_path(@q), class: "icon-big",
+                                                method: :post %>
+<% end %>
 
 
 <h2>Create an Answer</h2>

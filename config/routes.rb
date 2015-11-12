@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :likes, only: [:create, :destroy]
+    resources :favourites, only: [:create, :destroy]
     resources :answers
   end
 
