@@ -23,19 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
-    # # questions/search
-    # get(:search, {on: :collection})
-    #
-    # # questions/:id/search
-    # get(:search, {on: :member})
-    #
-    # # this generates a nested resource route
-    # # /questions/:question_id/search
-    # get(:search)
-
-    # this makes all the answers routes nested within questions,
-    # so all the standard answers url-s will be prepended with
-    # /questions/:questions_id
+    resources :likes, only: [:create, :destroy]
     resources :answers
   end
 

@@ -20,6 +20,8 @@ gem "bootstrap-sass"
 
 gem 'faker'
 
+gem 'font-awesome-rails'
+
 gem 'cowsay'
 
 # Use jquery as the JavaScript library

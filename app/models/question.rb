@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   # dependent: :destroy will destroy all answers referenceing a question just before deleting the question
   # dependent: :nullify - obvious
   has_many :answers, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
   belongs_to :user
 
   validates(:title, {presence: true,
@@ -35,6 +37,14 @@ class Question < ActiveRecord::Base
 
   def self.search(string)
     where("title ILIKE ? OR body ILIKE ?", "%#{string}%", "%#{string}%")
+  end
+
+  def liked_by? user
+    like_for(user).present? if user
+  end
+
+  def like_for(user)
+    likes.find_by_user_id(user.id)
   end
 
   private
