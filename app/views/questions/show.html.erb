@@ -19,6 +19,8 @@
                                           data: {confirm: "Are you sure?"}%>
 <% end %>
 
+<div class="">
+
 <% if user_signed_in? && @q.liked_by?(current_user) %>
   <%= link_to fa_icon("thumbs-up"), question_like_path(@q, @q.like_for(current_user)),
                       method: :delete,
@@ -29,7 +31,7 @@
                                                 method: :post %>
 <% end %>
 Liked: <%= pluralize(@q.likes.size, "time") %>
-
+<br>
 <% if user_signed_in? && @q.favourited_by?(current_user) %>
   <%= link_to fa_icon("star"), question_favourite_path(@q, @q.favourite_for(current_user)),
                       method: :delete,
@@ -39,7 +41,8 @@ Liked: <%= pluralize(@q.likes.size, "time") %>
   <%= link_to fa_icon("star-o"), question_favourites_path(@q), class: "icon-big",
                                                 method: :post %>
 <% end %>
-
+Favourited: <%= pluralize(@q.favourites.size, "time") %>
+</div>
 
 <h2>Create an Answer</h2>
 
