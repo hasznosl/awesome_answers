@@ -10,3 +10,9 @@
   Question.create title: Faker::Company.bs, body: Faker::Lorem.paragraph
 end
 print Cowsay::say("Created a 100 questions.")
+
+tags = ["science", "programming", "cats", "pyjamas", "ruby"]
+
+tags.each do |tag|
+  Tag.create(name: tag)
+end
