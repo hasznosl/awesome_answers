@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :nullify
   has_many :voted_question, through: :votes, source: :votes
 
+  # this will give all the answers on the questions created by the user
+  # its a different set from answers, that are the answers by the user to any question
+  # this is a different usecase of :through
+  has_many :questions_answers, through: :questions, source: :answers
+
   validates :email, presence: true, uniqueness: true
 
   def full_name
