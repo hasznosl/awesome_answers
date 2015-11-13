@@ -52,6 +52,37 @@ Liked: <%= pluralize(@q.likes.size, "time") %>
                                                 method: :post %>
 <% end %>
 Favourited: <%= pluralize(@q.favourites.size, "time") %>
+<br>
+  <% if !user_signed_in? || !@q.voted_on_by?(current_user)%>
+    <%= link_to fa_icon("arrow-up"), question_votes_path(@q, {vote: {is_up: true}}),
+                                      method: :post,
+                                      class: "icon-big"%>
+    <br>
+    (<%= @q.vote_result %>)
+    <br>
+    <%= link_to fa_icon("arrow-down"), question_votes_path(@q, {vote: {is_up: false}}),
+                                      method: :post,
+                                    class: "icon-big"%>
+  <% elsif @q.vote_for(current_user).is_up? %>
+    <%= link_to fa_icon("arrow-up"), question_vote_path(@q, @q.vote_for(current_user)),
+                                    method: :delete, class: "icon-big text-danger" %>
+    <br>
+    (<%= @q.vote_result %>)
+    <br>
+
+    <%= link_to fa_icon("arrow-down"), question_vote_path(@q, @q.vote_for(current_user), {vote: {is_up: false}}),
+                                    method: :patch, class: "icon-big" %>
+  <% elsif !@q.vote_for(current_user).is_up?%>
+    <%= link_to fa_icon("arrow-up"), question_vote_path(@q, @q.vote_for(current_user), {vote: {is_up: true}}),
+                                    method: :patch, class: "icon-big" %>
+    <br>
+    (<%= @q.vote_result %>)
+    <br>
+
+    <%= link_to fa_icon("arrow-down"), question_vote_path(@q, @q.vote_for(current_user)),
+                                    method: :delete, class: "icon-big text-danger" %>
+  <% else %>
+  <% end %>
 </div>
 
 <h2>Create an Answer</h2>

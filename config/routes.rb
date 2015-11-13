@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     # in this case we dont need an id
     delete :destroy, on: :collection
-
   end
 
   resources :questions do
     resources :likes, only: [:create, :destroy]
+    resources :votes, only: [:create, :destroy, :update]
     resources :favourites, only: [:create, :destroy]
     resources :answers
   end

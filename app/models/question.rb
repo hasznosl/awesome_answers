@@ -9,6 +9,8 @@ class Question < ActiveRecord::Base
   has_many :liking_users, through: :likes, source: :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :votes, dependent: :destroy
+  has_many :voting_users, through: :votes, source: :votes
 
   belongs_to :user
 
@@ -59,6 +61,18 @@ class Question < ActiveRecord::Base
 
   def favourite_for(user)
     favourites.find_by_user_id(user.id)
+  end
+
+  def voted_on_by?(user)
+    vote_for(user).present?
+  end
+
+  def vote_for(user)
+    votes.find_by_user_id(user.id)
+  end
+
+  def vote_result
+    votes.select{|v| v.is_up?}.count - votes.select{|v| !v.is_up?}.count
   end
 
 

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :liked_questions, through: :likes, source: :question
   has_many :favourites, dependent: :destroy
   has_many :favourited_questions, through: :favourites, source: :question
+  has_many :votes, dependent: :nullify
+  has_many :voted_question, through: :votes, source: :votes
 
   validates :email, presence: true, uniqueness: true
 
