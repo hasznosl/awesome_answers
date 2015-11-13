@@ -8,6 +8,7 @@ class FavouritesController < ApplicationController
     favourite.question = question
     favourite.user = current_user
     if favourite.save
+      FavouritesMailer.notify_question_owner(favourite).deliver_later
       redirect_to question_path(question), notice: "Thanks for favouriting!"
     else
       redirect_to question_path(question), notice: "You already favourited this!"

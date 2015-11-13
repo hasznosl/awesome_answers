@@ -55,7 +55,9 @@ class QuestionsController < ApplicationController
 
 
   def index
-    @questions = Question.all
+    # QuestionsCleanupJob.perform_later
+    Rails.logger.error ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    @questions = Question.recent_ten
   end
 
   def show

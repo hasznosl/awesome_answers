@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # root "welcome#index"
   root "questions#index"
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
   resources :users, only: [:new, :create]
 
   get "/index" => "welcome#index"

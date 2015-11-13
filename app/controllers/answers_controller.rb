@@ -11,6 +11,7 @@ class AnswersController < ApplicationController
     # this associates the answer with question @q
     @answer.question = @q
     if @answer.save
+      AnswersMailer.notify_question_owner(@answer).deliver_later
       redirect_to question_path(@q), notice: "Answer created successfully!"
     else
       # render -> same request cycle, I still have every class variables
