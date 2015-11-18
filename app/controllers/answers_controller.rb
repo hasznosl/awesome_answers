@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
   def create
     answer_params = params.require(:answer).permit(:body)
     # params[:question_id] is coming from the url
-    @q = Question.find(params[:question_id])
+    @q = Question.friendly.find(params[:question_id])
     @answer = current_user.answers.new(answer_params)
     # this associates the answer with question @q
     @answer.question = @q

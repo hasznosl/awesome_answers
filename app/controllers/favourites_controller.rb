@@ -4,7 +4,7 @@ class FavouritesController < ApplicationController
 
   def create
     favourite = Favourite.new
-    question = Question.find(params[:question_id])
+    question = Question.friendly.find(params[:question_id])
     favourite.question = question
     favourite.user = current_user
     if favourite.save
@@ -16,7 +16,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    question = Question.find params[:question_id]
+    question = Question.friendly.find params[:question_id]
     favourite = current_user.favourites.find_by_id params[:id]
     favourite.destroy
     redirect_to question_path(question), notice: "No more favourite."

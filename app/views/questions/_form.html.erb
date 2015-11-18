@@ -18,9 +18,8 @@
 
 <%= @q.errors.full_messages.join(", ") %>
 
-<!-- But the BEST -->
-<%= form_for @q do |f| %>
-  <div class="form-group">
+<%= simple_form_for @q do |f| %>
+  <!-- <div class="form-group">
     <%= f.label :title %>
     <% #this generates an input that is question[:title] = "whatever input" %>
     <%#= f.text_field :title, value: params[:question][:title] %>
@@ -28,15 +27,17 @@
     <p class="help-block">
       Enter a title describing your question.
     </p>
-  </div>
-  <div class="form-group">
+  </div> -->
+  <%= f.input :title, placeholder: "At least 3 characters" %>
+  <!-- <div class="form-group">
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
-  </div>
-  <div class="form-group">
+  </div> -->
+  <%= f.input :body, hint: "Put details for the question." %>
+  <!-- <div class="form-group">
     <%= f.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name %>
-  </div>
-
+  </div> -->
+  <%= f.association :tags, as: :check_boxes %>
 
   <%= f.submit class: "btn btn-primary"%>
 <% end %>

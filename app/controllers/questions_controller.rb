@@ -8,9 +8,9 @@ class QuestionsController < ApplicationController
   # before action will register a method that will be executed
   # before all actions unless you specify options such as
   # except or only
+  before_action :find_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, except: [:index, :show]
   before_action :authorize, only: [:edit, :update, :destroy]
-  before_action :find_question, only: [:show, :edit, :update, :destroy]
 
 
   def new
@@ -45,7 +45,8 @@ class QuestionsController < ApplicationController
   end
 
   def update
-
+    # this will make friendly id regenerate a slug for you
+    @q.slug = nil
     if @q.update(question_params)
       redirect_to question_path(@q), notice: "Question updated successfully."
     else
@@ -67,7 +68,8 @@ class QuestionsController < ApplicationController
   private
 
     def find_question
-      @q = Question.find params[:id]
+      @q = Question.friendly.find params[:id]
+      # redirect_to @q if @.slug != params[:id]
     end
 
     def question_params

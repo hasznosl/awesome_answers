@@ -30,6 +30,10 @@ class Question < ActiveRecord::Base
   after_initialize :set_default_values
   before_validation :capitalize_title
 
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
+
   # the scope does the same as the below commented out
   # scope takes in two arguments -> method name, and lambda
   # scope is rails
@@ -75,6 +79,9 @@ class Question < ActiveRecord::Base
     votes.select{|v| v.is_up?}.count - votes.select{|v| !v.is_up?}.count
   end
 
+  # def to_param
+  #   "#{id}-#{title}".parameterize
+  # end
 
   private
     # this is a custom validation method

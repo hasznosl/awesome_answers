@@ -22,6 +22,10 @@ gem 'faker'
 
 gem 'font-awesome-rails'
 
+gem 'friendly_id'
+
+gem 'simple_form'
+
 gem 'cowsay'
 
 # Use jquery as the JavaScript library
