@@ -1,5 +1,9 @@
 <h1>All Questions</h1>
 
+<div class="">
+  <%= image_tag "images.jpg" %>
+</div>
+
 <% @questions.each do |question| %>
   <div class="well">
     <%= link_to question.title, question_path(question) %>
