@@ -12,6 +12,8 @@ class Question < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :voting_users, through: :votes, source: :votes
 
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
 
   validates(:title, {presence: true,

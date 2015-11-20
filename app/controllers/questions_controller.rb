@@ -76,7 +76,7 @@ class QuestionsController < ApplicationController
       # this is called Mass assignment
       # without the whitelist, hackers could chaneg other other attributes of the model
       # happened to github, people hacked others ssh keys
-      question_params = params.require(:question).permit([:title, :body, {tag_ids: []}])
+      question_params = params.require(:question).permit([:title, :body, {tag_ids: []}, :image])
       # {tag_ids: []} will allow to send in multiple values
     end
 

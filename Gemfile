@@ -20,11 +20,17 @@ gem "bootstrap-sass"
 
 gem 'faker'
 
+gem 'fog'
+
 gem 'font-awesome-rails'
+
+gem 'mini_magick'
 
 gem 'friendly_id'
 
 gem 'simple_form'
+
+gem 'carrierwave'
 
 gem 'cowsay'
 
