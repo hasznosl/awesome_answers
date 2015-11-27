@@ -93,19 +93,12 @@ Favourited: <%= pluralize(@q.favourites.size, "time") %>
 
 <%= @answer.errors.full_messages.join(", ") %>
 
-<%= simple_form_for [@q, @answer] do |f| %>
-  <%= f.input :body %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<%= render "/answers/form" %>
 
 <h2>Answers</h2>
-<% @q.answers.each do |answer| %>
-  <div class="well">
-    <%= answer.body %>
-      <% if can? :destroy, answer %>
-      <%= link_to "Delete", question_answer_path(@q, answer), method: :delete,
-                                                              class: "btn btn-danger pull-right",
-                                                              data: {confirm: "Are you sure?"}%>
-    <% end %>
-  </div>
-<% end %>
+<div id="answers">
+  <%# render @q.answers #this would be the same as the loop%>
+  <% @q.answers.each do |answer| %>
+    <%= render "/answers/answer", answer: answer %>
+  <% end %>
+</div>

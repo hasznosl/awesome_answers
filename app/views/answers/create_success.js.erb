@@ -1,0 +1,9 @@
+// j method escapes javascript, putting \ before every quote
+$("#answers").prepend("<%= j render '/answers/answer', answer: @answer %>");
+
+<%# we need to reset @answer to become Answer.new because
+@answer is now persisted which means the form will will submit a PATCH request
+instead of POST request. We need the form to be a new asnswer %>
+<% @answer = Answer.new %>
+$("new_answer").replaceWith("<%= j render 'form' %>");
+$("#answer_body").val("");

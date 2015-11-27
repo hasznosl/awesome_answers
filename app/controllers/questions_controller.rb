@@ -59,6 +59,10 @@ class QuestionsController < ApplicationController
     # QuestionsCleanupJob.perform_later
     Rails.logger.error ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> #{current_user}"
     @questions = Question.recent_ten
+    respond_to do |format|
+      format.html {render}
+      format.json {render json: @questions.to_json}
+    end
   end
 
   def show
