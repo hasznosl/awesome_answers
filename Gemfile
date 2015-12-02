@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -22,8 +24,9 @@ gem 'faker'
 
 gem 'fog'
 
-gem 'font-awesome-rails'
 
+gem 'font-awesome-rails'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'mini_magick'
 
 gem 'friendly_id'
@@ -49,6 +52,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'delayed_job_active_record'
 
 gem 'delayed_job_web'
+
+
+gem 'devise'
+
+gem 'activeadmin', '~> 1.0.0.pre2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

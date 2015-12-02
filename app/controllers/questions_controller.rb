@@ -61,12 +61,16 @@ class QuestionsController < ApplicationController
     @questions = Question.recent_ten
     respond_to do |format|
       format.html {render}
-      format.json {render json: @questions.to_json}
+      format.json {render json: @questions.select(:id, :title, :view_count).to_json}
     end
   end
 
   def show
     @answer = Answer.new
+    respond_to do |format|
+      format.html {render}
+      format.json {render json: @q.to_json}
+    end
   end
 
   private
