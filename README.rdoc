@@ -1,28 +1,7 @@
-== README
+A StackOverflow like questions-answer webpage created using Rails/PostgreSQL and Jquery/Ajax/Bootstrap.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+features:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- full CRUDS for questions and answers (create/delete of answers using ajax)
+- favouriting/liking/voting for answers
+- login/logout
